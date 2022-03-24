@@ -27,8 +27,8 @@ for (let form of UI_ELEMENTS.FORMS) {
     form.addEventListener('submit', addTask);
     form.addTaskToList = addTaskToList;
     form.addTaskToUI = function () {
+        const inputValue = this.children[0].children[0].value;
         try {
-            const inputValue = this.children[0].children[0].value;
             if (!inputValue) {
                 throw new Error('This field cannot be empty');
             }

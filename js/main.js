@@ -39,8 +39,8 @@ const list = [{
 ]
 
 export function addTaskToList() {
+    const inputValue = this.children[0].children[0].value;
     try {
-        const inputValue = this.children[0].children[0].value;
         if (!inputValue) {
             throw new Error('This field cannot be empty');
         }
@@ -55,21 +55,20 @@ export function addTaskToList() {
 }
 
 export function changeStatus() {
+    const isDone = this.classList.contains("task__checkbox--done");
+    const taskName = this.nextElementSibling;
     try {
-        const isDone = this.classList.contains("task__checkbox--done");
-        const taskName = this.nextElementSibling;
         let index = list.findIndex(item => item.name === taskName.textContent);
         !!isDone ? list[index].status = DEFAULT.STATUS : list[index].status = STATUSES.DONE;
     } catch (error) {
         alert(error);
     }
-
 }
 
 export function deleteTaskFromList() {
+    const taskName = this.previousElementSibling;
+    let index = list.findIndex(item => item.name === taskName.textContent);
     try {
-        const taskName = this.previousElementSibling;
-        let index = list.findIndex(item => item.name === taskName.textContent);
         if (index >= 0) {
             list.splice(index, 1);
         }
